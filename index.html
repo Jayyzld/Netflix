@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix Clone</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:black;
+}
+
+.hero{
+    width:100%;
+    height:100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)),
+        url("bg.webp"); 
+
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+}
+
+.logo{
+    color:#e50914;
+    font-size:35px;
+    font-weight:bold;
+}
+
+.signin{
+    background:#e50914;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.signin:hover{
+    background:#b20710;
+}
+
+.content{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.center-box{
+    max-width:700px;
+    color:white;
+}
+
+.center-box h1{
+    font-size:55px;
+    font-weight:900;
+    margin-bottom:15px;
+}
+
+.center-box h3{
+    font-weight:normal;
+    margin-bottom:15px;
+}
+
+.center-box p{
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+.email-form{
+    display:flex;
+    justify-content:center;
+}
+
+.email-form input{
+    padding:15px;
+    width:350px;
+    border:1px solid rgba(255,255,255,0.5);
+    outline:none;
+    font-size:15px;
+    background: transparent; 
+    color: white;              
+}
+
+.email-form input::placeholder{
+    color: rgba(255,255,255,0.8);
+}
+
+.email-form button{
+    background:#e50914;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.email-form button:hover{
+    background:#b20710;
+}
+
+/* 🔥 SHAKE ANIMATION */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.4s;
+}
+
+@media(max-width:768px){
+    .center-box h1{
+        font-size:30px;
+    }
+
+    .email-form{
+        flex-direction:column;
+    }
+
+    .email-form input{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    .email-form button{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+    <div class="navbar">
+        <div class="logo">NETFLIX</div>
+        <button class="signin">Sign In</button>
+    </div>
+
+    <div class="content">
+        <div class="center-box">
+            <h1>Unlimited movies, TV shows, and more</h1>
+            <h3>Starts at ₱169. Cancel anytime.</h3>
+            <p>Ready to watch? Enter your email to create or restart your membership.</p>
+
+            <div class="email-form">
+                <input type="email" id="emailInput" placeholder="Email address">
+                <button id="startBtn">Get Started ></button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var emailInput = document.getElementById("emailInput");
+var startBtn = document.getElementById("startBtn");
+
+function isValidEmail(email){
+    var pattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
+    return pattern.test(email);
+}
+
+startBtn.addEventListener("click", function(){
+
+    var email = emailInput.value.trim();
+
+    if(!isValidEmail(email)){
+        // add shake
+        emailInput.classList.add("shake");
+
+        // remove after animation
+        setTimeout(function(){
+            emailInput.classList.remove("shake");
+        }, 400);
+    }
+    else{
+        window.location.href = "https://www.netflix.com/signup";
+    }
+
+});
+</script>
+
+</body>
+</html>
